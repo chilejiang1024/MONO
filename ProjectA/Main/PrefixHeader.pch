@@ -1,0 +1,64 @@
+//
+//  PrefixHeader.pch
+//  ProjectA
+//
+//  Created by JiangChile on 16/2/24.
+//  Copyright (c) 2016年 JiangChile. All rights reserved.
+//
+
+#ifndef ProjectA_PrefixHeader_pch
+#define ProjectA_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#import "AFNetworking.h"
+
+
+#ifndef TARGET_OS_IOS
+
+#define TARGET_OS_IOS TARGET_OS_IPHONE
+
+#endif
+
+#ifndef TARGET_OS_WATCH
+
+#define TARGET_OS_WATCH 0
+
+#endif
+
+
+
+
+#define WIDTH [UIScreen mainScreen].bounds.size.width
+#define HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define COLOR_RANDOM [UIColor colorWithRed:arc4random() % 256 / 255.0 green:arc4random() % 256 / 255.0 blue:arc4random() % 256 / 255.0 alpha:1.0]
+
+// 2bacb6
+#define MONO_COLOR [UIColor colorWithRed:0.22 green:0.73 blue:0.76 alpha:1.0]
+#define MONO_COLOR_CYAN [UIColor colorWithRed:0.17 green:0.67 blue:0.71 alpha:1.0]
+#define MONO_COLOR_DARK [UIColor colorWithRed:0.13 green:0.15 blue:0.16 alpha:1.0]
+#define MONO_COLOR_DEEPDARK [UIColor colorWithRed:0.08 green:0.09 blue:0.09 alpha:1.0]
+
+#define ALPHA 0.5
+
+
+
+// URL
+#define URL_REC_IMAGES @"http://mmmono.com/api/v2/banner/home_stickie/"
+#define URL_REC_WATERFALL @"http://mmmono.com/api/v2/waterfall/?page=%d&w_datetime=%@"
+#define URL_REC_TEA @"http://mmmono.com/api/v3/tea/history/"
+#define URL_SPECIAL_HOME @"http://mmmono.com/api/v2/special/special_tab/"
+#define URL_SPECIAL_SEARCH @"http://mmmono.com/api/v2/search/1/?q=%@"
+#define URL_SPECIAL_DETAIL @"http://mmmono.com/api/v2/special/%ld/content/"
+#define URL_CREATOR_HOME @"http://mmmono.com/api/v2/category/provider/"
+#define URL_CREATOR_DETAIL @"http://mmmono.com/api/v2/cp/%ld/list/"
+#define URL_CHECK_SPECIAL_UPDATE @"http://mmmono.com/api/v2/special/check_special_update/"
+#define URL_FAVLIST @"http://mmmono.com/api/v2/people/%@/favlist/"
+
+
+#endif
