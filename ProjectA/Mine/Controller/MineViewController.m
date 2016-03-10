@@ -106,11 +106,16 @@
                 [weakSignInView removeFromSuperview];
                 
                 // 显示用户页面
-                UserView *userView = [[UserView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - 49)];
+                self.userView = [[UserView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - 49)];
                 
-                userView.goToWebViewBlock = ^(NSString *url){
+                self.userView.refreshDataBlock = ^(){
+                    [weakSelf checkSpecialUpdate];
+                    [weakSelf getFavList];
+                };
+                
+                self.userView.goToWebViewBlock = ^(NSString *url){
                     BaseWebView *webView = [[BaseWebView alloc] initWithFrame:CGRectMake(WIDTH, 0, WIDTH, HEIGHT) URL:url];
-                    [self.view addSubview:webView];
+                    [weakSelf.view addSubview:webView];
                     [UIView animateWithDuration:0.5 animations:^{
                         CGRect frame = [webView frame];
                         frame.origin.x = 0;
@@ -118,7 +123,7 @@
                     }];
                 };
                 
-                [self.view addSubview:userView];
+                [self.view addSubview:self.userView];
                 
             };
             
@@ -160,6 +165,7 @@
             UserSettingView *settingView = [[UserSettingView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
             settingView.alpha = 0;
             __block typeof(UserSettingView *)weakSettingView = settingView;
+            
             settingView.backBlock = ^(){
                 [UIView animateWithDuration:0.3 animations:^{
                     weakSettingView.alpha = 0;
@@ -170,6 +176,18 @@
             };
             
             
+            // 注销登录状态, 移除mine页所有页面, 重新生成.
+            settingView.signOutBlock = ^(){
+                NSLog(@"sign out.");
+                [user setObject:nil forKey:@"username"];
+                for (UIView *view in weakSelf.view.subviews) {
+                    [view removeFromSuperview];
+                }
+                [weakSettingView removeFromSuperview];
+                [weakSelf createView];
+                [weakSelf checkSpecialUpdate];
+                [weakSelf getFavList];
+            };
             
             // 此处使用tabbarController.view 可以盖住tabbar
             [weakSelf.tabBarController.view addSubview:settingView];

@@ -16,7 +16,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "AFNetworking.h"
-
+#import "MONOTools.h"
 
 #ifndef TARGET_OS_IOS
 
@@ -29,6 +29,15 @@
 #define TARGET_OS_WATCH 0
 
 #endif
+
+
+/**
+ *  tag 使用
+ *
+ *  scroll view : 10000 10001 10002
+ * 
+ */
+
 
 
 
@@ -59,6 +68,10 @@
 #define URL_CREATOR_DETAIL @"http://mmmono.com/api/v2/cp/%ld/list/"
 #define URL_CHECK_SPECIAL_UPDATE @"http://mmmono.com/api/v2/special/check_special_update/"
 #define URL_FAVLIST @"http://mmmono.com/api/v2/people/%@/favlist/"
+#define URL_FAV @"http://mmmono.com/api/v2/item/%@fav/"
+
+
+
 
 
 #endif

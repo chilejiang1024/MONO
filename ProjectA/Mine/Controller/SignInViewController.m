@@ -31,7 +31,6 @@
     
     signInWithQQView.signInBlock = ^(){
         [self signInWithQQ];
-        [self dismissViewControllerAnimated:YES completion:nil];
     };
     
     self.signInWithQQView = signInWithQQView;
@@ -58,7 +57,7 @@
     [request addValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request addValue:@"mmmono.com" forHTTPHeaderField:@"HOST"];
     
-#pragma mark - 将json data 转换成dic 并记录登录状态
+    #pragma mark - 将json data 转换成dic 并记录登录状态
     
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         // 将json data 转换成dic
@@ -80,8 +79,10 @@
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 self.signInSuccessBlock();
+                [self.signInWithQQView.indicatorView stopAnimating];
+                [self dismissViewControllerAnimated:YES completion:nil];
+
             });
-            [self.signInWithQQView.indicatorView stopAnimating];
         } else {
             NSLog(@"sign in failuer.");
         }

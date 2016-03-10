@@ -7,10 +7,14 @@
 //
 
 #import "RecView.h"
-#import "UIImageView+WebCache.h"
+
 #import "RecModel.h"
+
 #import "RecTextTableViewCell.h"
+
 #import "MJRefresh.h"
+#import "UIImageView+WebCache.h"
+
 
 @interface RecView () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
@@ -19,6 +23,9 @@
 
 /** 首部轮播图3张 */
 @property (nonatomic, retain) NSMutableArray *arrayImages;
+
+/** 轮播图的图片数组 */
+@property (nonatomic, retain) NSMutableArray *arrayImage;
 
 /** 轮播图下背景和页码 */
 @property (nonatomic, retain) UILabel *labelPage;
@@ -29,6 +36,13 @@
 
 /** 往期 */
 @property (nonatomic, retain) UIButton *buttonPast;
+
+/** scroll view */
+@property (nonatomic, retain) UIScrollView *tableHeader;
+
+/** timer */
+@property (nonatomic, retain) NSTimer *timer;
+
 
 @end
 
@@ -52,6 +66,9 @@
     if (!_labelTime) {
         _labelTime = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 50)];
         _labelTime.backgroundColor = [UIColor blackColor];
+        _labelTime.textColor = [UIColor whiteColor];
+        _labelTime.text = [[self.arrayRecModels.firstObject next] w_datetime];
+        _labelTime.textAlignment = NSTextAlignmentCenter;
         _labelTime.alpha = 0.f;
     }
     return _labelTime;
@@ -70,6 +87,13 @@
     return _buttonPast;
 }
 
+- (NSMutableArray *)arrayImage {
+    if (!_arrayImage) {
+        _arrayImage = [NSMutableArray array];
+    }
+    return _arrayImage;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame Images:(NSMutableArray *)images Waterfalls:(NSMutableArray *)waterfalls{
     self = [super initWithFrame:frame];
     if (self) {
@@ -80,6 +104,7 @@
     return self;
 }
 
+#pragma mark - 创建 table view
 // table view
 // ---------------------------------------------
 
@@ -97,17 +122,27 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[RecTextTableViewCell class] forCellReuseIdentifier:@"cell"];
     
-    UIScrollView *tableHeader = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 300)];
-    tableHeader.pagingEnabled = YES;
-    tableHeader.contentSize = CGSizeMake(WIDTH * 3, 300);
-    tableHeader.delegate = self;
+    self.tableHeader = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 300)];
+    self.tableHeader.pagingEnabled = YES;
+    self.tableHeader.backgroundColor = [UIColor blackColor];
+    self.tableHeader.contentSize = CGSizeMake(WIDTH * 3, 300);
+    self.tableHeader.delegate = self;
     for (int i = 0; i < 3; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH * i, 0, WIDTH, 300)];
         WaterfallModel *model = self.arrayImages[i];
+        imageView.alpha = 0.8;
+        imageView.tag = 10000 + i;
         [imageView sd_setImageWithURL:[NSURL URLWithString:model.item.share_image]];
-        [tableHeader addSubview:imageView];
+        [self.tableHeader addSubview:imageView];
+        
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.item.share_image]]];
+        [self.arrayImage addObject:image];
+        
     }
-    self.tableView.tableHeaderView = tableHeader;
+    // 设置初始值
+    self.tableHeader.contentOffset = CGPointMake(WIDTH, 0);
+    
+    self.tableView.tableHeaderView = self.tableHeader;
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.refreshBlcok(1);
@@ -120,20 +155,60 @@
     [self.tableView addSubview:self.labelPage];
     [self.tableView addSubview:self.labelPageText];
     [self addSubview:self.tableView];
+    
+    [self createTimer];
+    
 }
 
+#pragma mark - 重写 scroll view 协议方法
 // scroll view
 // ---------------------------------------------
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (![scrollView isEqual:self.tableView]) {
-        int page = scrollView.contentOffset.x / WIDTH + 1;
-        self.labelPageText.text = [NSString stringWithFormat:@"%d/3", page];
+        
+        static NSUInteger indexMidImage = 0;
+        // 计算中间显示图片的index
+        indexMidImage += (scrollView.contentOffset.x / WIDTH > 1) ? 1 : -1;
+        
+        if (indexMidImage == -1) {
+            indexMidImage = self.arrayImage.count - 1;
+        } else if (indexMidImage == self.arrayImage.count) {
+            indexMidImage = 0;
+        }
+        self.labelPageText.text = [NSString stringWithFormat:@"%ld/3", indexMidImage + 1];
+        
+        // 改变imageview 的image
+        UIImageView *imageView = scrollView.subviews[1];
+        imageView.image = self.arrayImage[indexMidImage];
+        
+        // 恢复至原始content off set
+        scrollView.contentOffset = CGPointMake(WIDTH, 0);
+        
+        if (indexMidImage == 0) {
+            imageView = scrollView.subviews[0];
+            imageView.image = self.arrayImage.lastObject;
+            imageView = scrollView.subviews[2];
+            imageView.image = self.arrayImage.firstObject;
+        } else if (indexMidImage == self.arrayImage.count - 1) {
+            imageView = scrollView.subviews[0];
+            imageView.image = self.arrayImage.firstObject;
+            imageView = scrollView.subviews[2];
+            imageView.image = self.arrayImage.lastObject;
+        } else {
+            imageView = scrollView.subviews[0];
+            imageView.image = self.arrayImage[indexMidImage - 1];
+            imageView = scrollView.subviews[2];
+            imageView.image = self.arrayImage[indexMidImage + 1];
+        }
+        
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
     if (![scrollView isEqual:self.tableView]) {
+        // scroll view
         CGFloat angle = M_PI * scrollView.contentOffset.x / WIDTH + M_PI_4;
         self.labelPage.transform = CGAffineTransformMakeRotation(angle);
     } else {
@@ -144,8 +219,10 @@
     
 }
 
+#pragma mark - table view 协议方法
 // table view 协议方法
 // ---------------------------------------------
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     WaterfallModel *model = [self.arrayRecModels[section] waterfall].firstObject;
@@ -214,7 +291,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section + 1 == self.arrayRecModels.count) {
+        _labelTime.text = [[self.arrayRecModels[indexPath.section] next] w_datetime];
+    }
     RecTextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.waterfallModel = [self.arrayRecModels[indexPath.section] waterfall][indexPath.row];
     return cell;
 }
@@ -226,6 +307,7 @@
     self.clickBlock(url);
 }
 
+#pragma mark - selector
 // ---------------------------------------------
 
 - (void)clickButtonPast:(UIButton *)sender {
@@ -233,11 +315,41 @@
 }
 
 
+#pragma mark - auto轮播图的实现
 // ---------------------------------------------
 
+- (void)createTimer {
+    self.timer = [NSTimer timerWithTimeInterval:2.f target:self selector:@selector(timerSelector:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
 
-
-
+- (void)timerSelector:(NSTimer *)sender {
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.tableHeader setContentOffset:CGPointMake(WIDTH * 2, 0)];
+    }];
+    
+    static NSUInteger index = 0;
+    // 计算中间显示图片的index
+    index += 1;
+    
+    if (index == self.arrayImage.count) {
+        index = 0;
+    }
+    
+    self.labelPageText.text = [NSString stringWithFormat:@"%ld/3", index + 1];
+    
+    // 改变imageview 的image
+    UIImageView *imageView = self.tableHeader.subviews[1];
+    imageView.image = self.arrayImage[index];
+    
+    // 恢复至原始content off set
+    self.tableHeader.contentOffset = CGPointMake(WIDTH, 0);
+    
+    imageView = self.tableHeader.subviews[0];
+    imageView.image = self.arrayImage.firstObject;
+    imageView = self.tableHeader.subviews[2];
+    imageView.image = self.arrayImage.lastObject;
+}
 
 
 

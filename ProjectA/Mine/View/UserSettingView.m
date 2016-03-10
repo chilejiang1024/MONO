@@ -76,10 +76,12 @@
     
     [self createTableView];
     
+    [self createSwitch];
     
     
 }
 
+#pragma mark - table view
 
 - (void)createTableView {
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH - 100, HEIGHT - 200) style:UITableViewStyleGrouped];
@@ -137,13 +139,62 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@", self.arrayMenu[indexPath.row]);
+    switch (indexPath.row) {
+        case 0 :
+            
+            break;
+            
+        case 1 :
+            
+            break;
+            
+            
+            
+            
+        case 7 :
+            self.signOutBlock();
+            break;
+            
+        default:
+            break;
+    }
 }
 
-#pragma mark - button selector
+#pragma mark - switch
+
+- (void)createSwitch {
+    UISwitch *switch1 = [[UISwitch alloc] initWithFrame:CGRectMake(260, 160, 50, 30)];
+    [switch1 addTarget:self action:@selector(changeSwitchValue:) forControlEvents:UIControlEventValueChanged];
+    [self addSubview:switch1];
+
+    UISwitch *switch2 = [[UISwitch alloc] initWithFrame:CGRectMake(260, 210, 50, 30)];
+    [switch2 addTarget:self action:@selector(changeSwitchValue:) forControlEvents:UIControlEventValueChanged];
+    [self addSubview:switch2];
+    
+    UISwitch *switch3 = [[UISwitch alloc] initWithFrame:CGRectMake(260, 260, 50, 30)];
+    [switch3 addTarget:self action:@selector(changeSwitchValue:) forControlEvents:UIControlEventValueChanged];
+    [self addSubview:switch3];
+    
+    
+}
+
+
+#pragma mark - selector
 
 - (void)back:(UIButton *)sender {
     self.backBlock();
+}
+
+- (void)changeSwitchValue:(UISwitch *)sender {
+    float y = sender.frame.origin.y;
+    
+    if (y == 160) {
+        NSLog(@"别费劲了....");
+    } else if (y == 210) {
+        NSLog(@"你还点....");
+    } else {
+        NSLog(@"点吧点吧....");
+    }
 }
 
 

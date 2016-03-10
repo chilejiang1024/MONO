@@ -14,6 +14,10 @@ typedef void(^BackBlock)();
 /** BackBlock */
 @property (nonatomic, copy) BackBlock backBlock;
 
+typedef void(^SignOutBlock)();
+/** SignOutBlock */
+@property (nonatomic, copy) SignOutBlock signOutBlock;
+
 
 
 @end
