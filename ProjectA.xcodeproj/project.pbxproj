@@ -56,6 +56,13 @@
 		0774891F1C8FBE3F006DF949 /* bottom_btn_liked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0774891B1C8FBE3F006DF949 /* bottom_btn_liked@2x.png */; };
 		077489201C8FBE3F006DF949 /* bottom_btn_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0774891C1C8FBE3F006DF949 /* bottom_btn_share@2x.png */; };
 		077489231C8FCA05006DF949 /* MONOTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 077489221C8FCA05006DF949 /* MONOTools.m */; };
+		0774892D1C912360006DF949 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0774892C1C912360006DF949 /* CommentView.m */; };
+		077489301C9123B9006DF949 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0774892F1C9123B9006DF949 /* CommentModel.m */; };
+		077489361C9151B3006DF949 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077489351C9151B3006DF949 /* CommentTableViewCell.m */; };
+		077489381C9151F5006DF949 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077489371C9151F5006DF949 /* CommentTableViewCell.xib */; };
+		0774893A1C915406006DF949 /* icon-comment-time@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077489391C915406006DF949 /* icon-comment-time@3x.png */; };
+		0774893C1C9154F6006DF949 /* item-btn-comment-black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0774893B1C9154F6006DF949 /* item-btn-comment-black@3x.png */; };
+		0774893E1C9168E6006DF949 /* btn-comment-submit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0774893D1C9168E6006DF949 /* btn-comment-submit@3x.png */; };
 		077B798B1C87D0B90048692B /* SpecialSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B798A1C87D0B90048692B /* SpecialSearchResultModel.m */; };
 		077B798E1C87D7840048692B /* SpecialSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B798D1C87D7840048692B /* SpecialSearchResultCell.m */; };
 		077B79911C87D7950048692B /* ContentSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B79901C87D7950048692B /* ContentSearchResultCell.m */; };
@@ -235,6 +242,16 @@
 		0774891C1C8FBE3F006DF949 /* bottom_btn_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom_btn_share@2x.png"; sourceTree = "<group>"; };
 		077489211C8FCA05006DF949 /* MONOTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MONOTools.h; sourceTree = "<group>"; };
 		077489221C8FCA05006DF949 /* MONOTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MONOTools.m; sourceTree = "<group>"; };
+		0774892B1C912360006DF949 /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
+		0774892C1C912360006DF949 /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
+		0774892E1C9123B9006DF949 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		0774892F1C9123B9006DF949 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		077489341C9151B3006DF949 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
+		077489351C9151B3006DF949 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
+		077489371C9151F5006DF949 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		077489391C915406006DF949 /* icon-comment-time@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-comment-time@3x.png"; sourceTree = "<group>"; };
+		0774893B1C9154F6006DF949 /* item-btn-comment-black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "item-btn-comment-black@3x.png"; sourceTree = "<group>"; };
+		0774893D1C9168E6006DF949 /* btn-comment-submit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-comment-submit@3x.png"; sourceTree = "<group>"; };
 		077B79891C87D0B90048692B /* SpecialSearchResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialSearchResultModel.h; sourceTree = "<group>"; };
 		077B798A1C87D0B90048692B /* SpecialSearchResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialSearchResultModel.m; sourceTree = "<group>"; };
 		077B798C1C87D7840048692B /* SpecialSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialSearchResultCell.h; sourceTree = "<group>"; };
@@ -662,11 +679,34 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		076A10A41C81BFB800047A86 /* XIXI */ = {
+		077489281C912360006DF949 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
+				077489291C912360006DF949 /* Model */,
+				0774892A1C912360006DF949 /* View */,
 			);
-			path = XIXI;
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		077489291C912360006DF949 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0774892E1C9123B9006DF949 /* CommentModel.h */,
+				0774892F1C9123B9006DF949 /* CommentModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0774892A1C912360006DF949 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0774892B1C912360006DF949 /* CommentView.h */,
+				0774892C1C912360006DF949 /* CommentView.m */,
+				077489341C9151B3006DF949 /* CommentTableViewCell.h */,
+				077489351C9151B3006DF949 /* CommentTableViewCell.m */,
+				077489371C9151F5006DF949 /* CommentTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		079CBB761C844276006D3D8E /* Fonts */ = {
@@ -814,10 +854,10 @@
 		07CBC34E1C7D9D6400F095E0 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				077489281C912360006DF949 /* Comment */,
 				07CBC34F1C7D9F7600F095E0 /* BaseClasses */,
 				07CBC3501C7D9F7600F095E0 /* Tools */,
 				07CBC3551C7DA00400F095E0 /* Frameworks */,
-				076A10A41C81BFB800047A86 /* XIXI */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -1005,6 +1045,9 @@
 		07CBC3F71C7DAAA600F095E0 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				0774893B1C9154F6006DF949 /* item-btn-comment-black@3x.png */,
+				0774893D1C9168E6006DF949 /* btn-comment-submit@3x.png */,
+				077489391C915406006DF949 /* icon-comment-time@3x.png */,
 				077489191C8FBE3F006DF949 /* bottom_btn_comment@2x.png */,
 				0774891A1C8FBE3F006DF949 /* bottom_btn_like@2x.png */,
 				0774891B1C8FBE3F006DF949 /* bottom_btn_liked@2x.png */,
@@ -1155,10 +1198,13 @@
 				07411D0F1C8E7C67003DDB50 /* icon-juhua.png in Resources */,
 				07F0E88A1C8D17BB0007F445 /* background.jpg in Resources */,
 				07411D101C8E7C67003DDB50 /* icon-liaoliao.png in Resources */,
+				0774893A1C915406006DF949 /* icon-comment-time@3x.png in Resources */,
 				07F0E87F1C8AC9FC0007F445 /* SignInWithSina.png in Resources */,
 				0774891D1C8FBE3F006DF949 /* bottom_btn_comment@2x.png in Resources */,
 				07426BF11C89200A0078CCF0 /* back-button-normal.jpg in Resources */,
 				076A10951C81893C00047A86 /* icon-back.png in Resources */,
+				077489381C9151F5006DF949 /* CommentTableViewCell.xib in Resources */,
+				0774893C1C9154F6006DF949 /* item-btn-comment-black@3x.png in Resources */,
 				07426C021C893C370078CCF0 /* icon-n.png in Resources */,
 				075EE41F1C7F2EC70060808B /* icon-collect.png in Resources */,
 				07411D121C8E7C67003DDB50 /* icon-qingchu.png in Resources */,
@@ -1187,6 +1233,7 @@
 				07CBC3231C7D9B2700F095E0 /* Images.xcassets in Resources */,
 				07411CF31C8D5AC0003DDB50 /* bg.png in Resources */,
 				079CBB781C844276006D3D8E /* STKaiti.ttf in Resources */,
+				0774893E1C9168E6006DF949 /* btn-comment-submit@3x.png in Resources */,
 				07F0E88C1C8D1CB70007F445 /* icon-mono.png in Resources */,
 				07F0E8671C8A6E270007F445 /* icon-x.png in Resources */,
 				07F0E87E1C8AC9FC0007F445 /* SignInWithQQ.png in Resources */,
@@ -1233,6 +1280,8 @@
 				07CBC41E1C7DAE9300F095E0 /* AFNetworkReachabilityManager.m in Sources */,
 				077489231C8FCA05006DF949 /* MONOTools.m in Sources */,
 				07CBC4231C7DAE9300F095E0 /* AFURLSessionManager.m in Sources */,
+				0774892D1C912360006DF949 /* CommentView.m in Sources */,
+				077489361C9151B3006DF949 /* CommentTableViewCell.m in Sources */,
 				07CBC3E81C7DA78000F095E0 /* SDWebImageDecoder.m in Sources */,
 				07CBC41B1C7DAE9300F095E0 /* AFHTTPRequestOperation.m in Sources */,
 				07CBC3F61C7DA79C00F095E0 /* RecViewController.m in Sources */,
@@ -1240,6 +1289,7 @@
 				07CBC3581C7DA56A00F095E0 /* RecModel.m in Sources */,
 				07CBC35B1C7DA60100F095E0 /* NextModel.m in Sources */,
 				077B79941C881BF50048692B /* SpecialDetailView.m in Sources */,
+				077489301C9123B9006DF949 /* CommentModel.m in Sources */,
 				07CBC3D81C7DA78000F095E0 /* MJRefreshAutoStateFooter.m in Sources */,
 				077B798E1C87D7840048692B /* SpecialSearchResultCell.m in Sources */,
 				07CBC3F01C7DA78000F095E0 /* UIImage+WebP.m in Sources */,

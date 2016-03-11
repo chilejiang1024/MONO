@@ -7,10 +7,14 @@
 //
 
 #import "MONOTools.h"
+#import "CommentModel.h"
 
 @interface MONOTools ()
 
 @property (nonatomic, retain) AFHTTPRequestOperationManager *manager;
+
+/** result */
+@property (nonatomic, retain) NSMutableArray *result;
 
 @end
 
@@ -77,6 +81,36 @@ static id _instance;
     
 }
 
+- (NSMutableArray *)getCommentArrayWithURL:(NSString *)url {
 
+    return self.result;
+}
+
+- (void)postComment:(NSString *)comment URL:(NSString *)url {
+    
+    NSString *str = [NSString stringWithFormat:@"http://mmmono.com/api/v2/item/%@comment/", [url substringFromIndex:@"http://mmmono.com/item/".length]];
+    NSString *bodyStr = [NSString stringWithFormat:@"{\"text\" : \"%@\"}", comment];
+    NSURL *url1 = [NSURL URLWithString:str];
+    NSURLSessionConfiguration *sessionCfg = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionCfg];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url1];
+    request.HTTPMethod = @"POST";
+    request.HTTPBody = [bodyStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [request addValue:@"d93c6170bcd711e4a1cd5254000ccdad" forHTTPHeaderField:@"HTTP-AUTHORIZATION"];
+    [request addValue:@"160" forHTTPHeaderField:@"Content-Length"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"Keep-Alive" forHTTPHeaderField:@"Connection"];
+    [request addValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request addValue:@"mmmono.com" forHTTPHeaderField:@"HOST"];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSLog(@"comment success.");
+        }
+    }];
+    [dataTask resume];
+
+}
 
 @end

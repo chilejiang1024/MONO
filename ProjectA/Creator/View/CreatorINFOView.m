@@ -7,6 +7,7 @@
 //
 
 #import "CreatorINFOView.h"
+
 #import "UIImageView+WebCache.h"
 
 @interface CreatorINFOView ()

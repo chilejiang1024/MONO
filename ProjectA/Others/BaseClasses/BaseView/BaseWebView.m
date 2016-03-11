@@ -7,6 +7,7 @@
 //
 
 #import "BaseWebView.h"
+#import "CommentView.h"
 
 @interface BaseWebView () <UIWebViewDelegate>
 
@@ -20,7 +21,6 @@
 
 @property (nonatomic, retain) UIButton *shareButton;
 
-@property (nonatomic, retain) NSUserDefaults *user;
 
 @end
 
@@ -28,18 +28,12 @@
 
 - (instancetype)initWithFrame:(CGRect)frame URL:(NSString *)url{
     frame.origin.y = -49;
+    frame.size.height += 49;
     if (self = [super initWithFrame:frame]) {
         self.url = url;
         [self createView];
     }
     return self;
-}
-
-- (NSUserDefaults *)user {
-    if (!_user) {
-        _user = [NSUserDefaults standardUserDefaults];
-    }
-    return _user;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
@@ -101,12 +95,16 @@
 }
 
 - (void)clickLikeButton:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    NSString *strId = [self.url substringFromIndex:[@"http://mmmono.com/item/" length]];
-    if (sender.selected) {
-        [[MONOTools shareTools] likeThisArticleWithURL:[NSString stringWithFormat:URL_FAV, strId]];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"username"] != nil) {
+        sender.selected = !sender.selected;
+        NSString *strId = [self.url substringFromIndex:[@"http://mmmono.com/item/" length]];
+        if (sender.selected) {
+            [[MONOTools shareTools] likeThisArticleWithURL:[NSString stringWithFormat:URL_FAV, strId]];
+        } else {
+            [[MONOTools shareTools] unlikeThisArticleWithURL:[NSString stringWithFormat:URL_FAV, strId]];
+        }
     } else {
-        [[MONOTools shareTools] unlikeThisArticleWithURL:[NSString stringWithFormat:URL_FAV, strId]];
+        [self notSignIn];
     }
 }
 
@@ -119,14 +117,35 @@
 
 - (void)clickCommentButton:(UIButton *)sender {
     
-    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"username"] != nil) {
+        CommentView *commentView = [[CommentView alloc] initWithFrame:CGRectMake(0, 50, WIDTH, HEIGHT) URL:self.url];
+        [self addSubview:commentView];
+    } else {
+        [self notSignIn];
+    }
     
     
 }
 
 - (void)notSignIn {
-    UIView *alertView = [[UIView alloc] initWithFrame:CGRectMake(0, 49, WIDTH, 50)];
-    
+    UILabel *labelAlert= [[UILabel alloc] initWithFrame:CGRectMake(0, 50, WIDTH, 50)];
+    labelAlert.backgroundColor = [UIColor blackColor];
+    labelAlert.alpha = 0;
+    labelAlert.text = @"未登录";
+    labelAlert.textAlignment = NSTextAlignmentCenter;
+    labelAlert.textColor = [UIColor whiteColor];
+    [self addSubview:labelAlert];
+    [UIView animateWithDuration:0.3 animations:^{
+        labelAlert.alpha = 0.8;
+    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.3 animations:^{
+            labelAlert.alpha = 0;
+        }];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [labelAlert removeFromSuperview];
+        });
+    });
     
 }
 

@@ -164,6 +164,7 @@ typedef enum : NSUInteger {
     [self.buttonSubscribe setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.buttonSubscribe.layer.cornerRadius = 15;
     [self.buttonSubscribe setTitle:@"订阅" forState:UIControlStateNormal];
+    
     [headerView addSubview:self.buttonSubscribe];
     
     // 300 height

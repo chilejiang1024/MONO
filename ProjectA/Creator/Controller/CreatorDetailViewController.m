@@ -7,10 +7,13 @@
 //
 
 #import "CreatorDetailViewController.h"
+
 #import "CreatorDetailView.h"
-#import "WaterfallModel.h"
 #import "BaseWebView.h"
 #import "CreatorINFOView.h"
+
+#import "WaterfallModel.h"
+
 
 @interface CreatorDetailViewController ()
 

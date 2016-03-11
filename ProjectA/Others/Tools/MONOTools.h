@@ -18,4 +18,8 @@
 
 - (void)unlikeThisArticleWithURL:(NSString *)url;
 
+- (NSMutableArray *)getCommentArrayWithURL:(NSString *)url;
+
+- (void)postComment:(NSString *)comment URL:(NSString *)url;
+
 @end

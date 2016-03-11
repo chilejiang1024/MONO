@@ -7,9 +7,12 @@
 //
 
 #import "CreatorDetailView.h"
+
 #import "WaterfallModel.h"
-#import "UIImageView+WebCache.h"
+
 #import "RecTextTableViewCell.h"
+
+#import "UIImageView+WebCache.h"
 
 @interface CreatorDetailView () <UITableViewDataSource, UITableViewDelegate>
 

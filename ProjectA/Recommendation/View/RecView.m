@@ -216,13 +216,23 @@
         CGFloat y = scrollView.contentOffset.y;
         self.labelTime.alpha = y / 300 / 2 > 0.75 ? 0.75 : y / 300 / 2;
     }
-    
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if ([scrollView isEqual:self.tableHeader]) {
+        [self.timer invalidate];
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    });
 }
 
 #pragma mark - table view 协议方法
 // table view 协议方法
 // ---------------------------------------------
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     WaterfallModel *model = [self.arrayRecModels[section] waterfall].firstObject;
