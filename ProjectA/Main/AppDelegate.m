@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
+
 #import "TabBarViewController.h"
+#import "GuideViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,9 +22,16 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    TabBarViewController *root = [[TabBarViewController alloc] init];
-    self.window.rootViewController = root;
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]) {
+        // [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:@"firstLaunch"];
+        GuideViewController *guideVC = [[GuideViewController alloc] init];
+        self.window.rootViewController = guideVC;
+    } else {
+        TabBarViewController *root = [[TabBarViewController alloc] init];
+        self.window.rootViewController = root;
+    }
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

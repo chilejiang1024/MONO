@@ -166,7 +166,9 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (![scrollView isEqual:self.tableView]) {
-        
+        if (scrollView.contentOffset.x == WIDTH) {
+            return;
+        }
         static NSUInteger indexMidImage = 0;
         // 计算中间显示图片的index
         indexMidImage += (scrollView.contentOffset.x / WIDTH > 1) ? 1 : -1;
@@ -280,7 +282,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // 自适应 我去 高度 ----- 
+    // 自适应 高度 -----
     CGFloat height = 0;
     WaterfallModel *waterfallModel = [self.arrayRecModels[indexPath.section] waterfall][indexPath.row];
     CGFloat h = 15 * waterfallModel.item.content.desc.length / 22;
@@ -340,7 +342,8 @@
     
     static NSUInteger index = 0;
     // 计算中间显示图片的index
-    index += 1;
+    // index += 1;
+    index = [self.labelPageText.text integerValue];
     
     if (index == self.arrayImage.count) {
         index = 0;

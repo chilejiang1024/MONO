@@ -14,6 +14,12 @@
 
 #import "UIImageView+WebCache.h"
 
+typedef enum : NSUInteger {
+    CleanSDWebImageCaches = 5,
+    SignOut,
+} Menu;
+
+
 @interface UserSettingView () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, assign) float height;
@@ -149,9 +155,11 @@
             break;
             
             
+        case CleanSDWebImageCaches :
+            self.cleanSDWebIamgeCachesBlock();
+            break;
             
-            
-        case 7 :
+        case SignOut :
             self.signOutBlock();
             break;
             

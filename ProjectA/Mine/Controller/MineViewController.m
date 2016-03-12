@@ -18,6 +18,7 @@
 #import "UserSettingView.h"
 #import "BaseWebView.h"
 
+#import "SDWebImageManager.h"
 
 
 @interface MineViewController ()
@@ -113,6 +114,41 @@
                     [weakSelf getFavList];
                 };
                 
+                self.userView.goToUserSettingViewBlock = ^(){
+                    UserSettingView *settingView = [[UserSettingView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+                    settingView.alpha = 0;
+                    __block typeof(UserSettingView *)weakSettingView = settingView;
+                    
+                    settingView.backBlock = ^(){
+                        [UIView animateWithDuration:0.3 animations:^{
+                            weakSettingView.alpha = 0;
+                        }];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [weakSettingView removeFromSuperview];
+                        });
+                    };
+                    
+                    
+                    // 注销登录状态, 移除mine页所有页面, 重新生成.
+                    settingView.signOutBlock = ^(){
+                        NSLog(@"sign out.");
+                        [weakSelf.user setObject:nil forKey:@"username"];
+                        for (UIView *view in weakSelf.view.subviews) {
+                            [view removeFromSuperview];
+                        }
+                        [weakSettingView removeFromSuperview];
+                        [weakSelf createView];
+                        [weakSelf checkSpecialUpdate];
+                        [weakSelf getFavList];
+                    };
+                    
+                    // 此处使用tabbarController.view 可以盖住tabbar
+                    [weakSelf.tabBarController.view addSubview:settingView];
+                    [UIView animateWithDuration:0.3 animations:^{
+                        settingView.alpha = 1;
+                    }];
+                };
+                
                 self.userView.goToWebViewBlock = ^(NSString *url){
                     BaseWebView *webView = [[BaseWebView alloc] initWithFrame:CGRectMake(WIDTH, 0, WIDTH, HEIGHT) URL:url];
                     [weakSelf.view addSubview:webView];
@@ -176,6 +212,15 @@
             };
             
             
+            // 清除缓存
+            settingView.cleanSDWebIamgeCachesBlock = ^(){
+                NSString *message = [NSString stringWithFormat:@"Clear Caches %.2fMB", [SDWebImageManager.sharedManager.imageCache getSize] / 1024 / 1024.0];
+                [weakSelf showMessageLabelWithMessage:message OnView:weakSettingView];
+                NSLog(@"%ld Bytes.", [SDWebImageManager.sharedManager.imageCache getSize]);
+                [SDWebImageManager.sharedManager.imageCache clearMemory];
+                [SDWebImageManager.sharedManager.imageCache clearDisk];
+            };
+            
             // 注销登录状态, 移除mine页所有页面, 重新生成.
             settingView.signOutBlock = ^(){
                 NSLog(@"sign out.");
@@ -230,6 +275,26 @@
     }];
 }
 
+#pragma mark - show message label
+
+- (void)showMessageLabelWithMessage:(NSString *)message OnView:(UIView *)view {
+    UILabel *labelCaches = [[UILabel alloc] initWithFrame:CGRectMake(0, -50, WIDTH, 50)];
+    labelCaches.backgroundColor = [UIColor blackColor];
+    labelCaches.text = message;
+    labelCaches.textAlignment = NSTextAlignmentCenter;
+    labelCaches.textColor = [UIColor whiteColor];
+    [view addSubview:labelCaches];
+    [UIView animateWithDuration:0.5 animations:^{
+        labelCaches.frame = CGRectMake(0, 0, WIDTH, 50);
+    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.3 animations:^{
+            [UIView animateWithDuration:0.3 animations:^{
+                labelCaches.frame = CGRectMake(0, -50, WIDTH, 50);
+            }];
+        }];
+    });
+}
 
 
 

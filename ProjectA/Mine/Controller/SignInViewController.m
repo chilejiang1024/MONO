@@ -7,8 +7,13 @@
 //
 
 #import "SignInViewController.h"
+
 #import "UserSignInModel.h"
+
 #import "SignInWithQQView.h"
+
+#import "SqliteFmdbTools.h"
+
 
 @interface SignInViewController ()
 
@@ -62,6 +67,7 @@
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         // 将json data 转换成dic
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
         self.userModel = [[UserSignInModel alloc] initWithDic:dic];
         if (!error) {
             NSLog(@"sign in successfully!! name : %@", self.userModel.name);
@@ -75,23 +81,28 @@
             [user setObject:@(self.userModel.id_old_user) forKey:@"id_old_user"];
             [user setObject:self.userModel.avatar_url forKey:@"avatar_url"];
             [user setObject:self.userModel.access_token forKey:@"access_token"];
+            
+            // 保存到本地数据库中
+            // -----------------------------------------------------------
+            [SqliteFmdbTools insertIntoTableUserWithUserModel:self.userModel];
+            [SqliteFmdbTools selectAllUsers];
+            
+            
             // -----------------------------------------------------------
             
+            
+            // 延时1s, 主要为了演示.
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 self.signInSuccessBlock();
                 [self.signInWithQQView.indicatorView stopAnimating];
                 [self dismissViewControllerAnimated:YES completion:nil];
-
             });
         } else {
             NSLog(@"sign in failuer.");
         }
-        
     }];
     [dataTask resume];
-    
-    
-    
+   
 }
 
 @end

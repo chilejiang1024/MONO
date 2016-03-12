@@ -79,10 +79,10 @@ static id _instance;
 
 - (void)shareToOtherPlatformWithURL:(NSString *)url {
     
+    
 }
 
 - (NSMutableArray *)getCommentArrayWithURL:(NSString *)url {
-
     return self.result;
 }
 

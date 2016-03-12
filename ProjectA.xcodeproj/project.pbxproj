@@ -139,6 +139,15 @@
 		07CBC42A1C7DB07200F095E0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CBC4291C7DB07200F095E0 /* SystemConfiguration.framework */; };
 		07CBC42E1C7DC84300F095E0 /* icon-m-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 07CBC42D1C7DC84300F095E0 /* icon-m-selected.png */; };
 		07D482E61C89754300307664 /* CreatorDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D482E51C89754300307664 /* CreatorDetailView.m */; };
+		07EC541A1C92ABFD00D1AF89 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EC54101C92ABFD00D1AF89 /* FMDatabase.m */; };
+		07EC541B1C92ABFD00D1AF89 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EC54121C92ABFD00D1AF89 /* FMDatabaseAdditions.m */; };
+		07EC541C1C92ABFD00D1AF89 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EC54141C92ABFD00D1AF89 /* FMDatabasePool.m */; };
+		07EC541D1C92ABFD00D1AF89 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EC54161C92ABFD00D1AF89 /* FMDatabaseQueue.m */; };
+		07EC541E1C92ABFD00D1AF89 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EC54191C92ABFD00D1AF89 /* FMResultSet.m */; };
+		07EC54211C92AC3F00D1AF89 /* SqliteFmdbTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EC54201C92AC3F00D1AF89 /* SqliteFmdbTools.m */; };
+		07EC54231C92AC6400D1AF89 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EC54221C92AC6400D1AF89 /* libsqlite3.0.dylib */; };
+		07EC54291C92E07C00D1AF89 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EC54281C92E07C00D1AF89 /* GuideViewController.m */; };
+		07EC542B1C92E90100D1AF89 /* LaunchImage-700-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07EC542A1C92E90100D1AF89 /* LaunchImage-700-568h@2x.png */; };
 		07F0E85F1C89A8990007F445 /* CreatorINFOView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F0E85E1C89A8990007F445 /* CreatorINFOView.m */; };
 		07F0E8621C89BA5B0007F445 /* sina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 07F0E8601C89BA5B0007F445 /* sina.jpg */; };
 		07F0E8631C89BA5B0007F445 /* weichat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 07F0E8611C89BA5B0007F445 /* weichat.jpg */; };
@@ -401,6 +410,23 @@
 		07CBC42D1C7DC84300F095E0 /* icon-m-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-m-selected.png"; sourceTree = "<group>"; };
 		07D482E41C89754300307664 /* CreatorDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatorDetailView.h; sourceTree = "<group>"; };
 		07D482E51C89754300307664 /* CreatorDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatorDetailView.m; sourceTree = "<group>"; };
+		07EC540F1C92ABFD00D1AF89 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		07EC54101C92ABFD00D1AF89 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		07EC54111C92ABFD00D1AF89 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		07EC54121C92ABFD00D1AF89 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		07EC54131C92ABFD00D1AF89 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		07EC54141C92ABFD00D1AF89 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		07EC54151C92ABFD00D1AF89 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		07EC54161C92ABFD00D1AF89 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		07EC54171C92ABFD00D1AF89 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		07EC54181C92ABFD00D1AF89 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		07EC54191C92ABFD00D1AF89 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		07EC541F1C92AC3F00D1AF89 /* SqliteFmdbTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteFmdbTools.h; sourceTree = "<group>"; };
+		07EC54201C92AC3F00D1AF89 /* SqliteFmdbTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqliteFmdbTools.m; sourceTree = "<group>"; };
+		07EC54221C92AC6400D1AF89 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		07EC54271C92E07C00D1AF89 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
+		07EC54281C92E07C00D1AF89 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
+		07EC542A1C92E90100D1AF89 /* LaunchImage-700-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-700-568h@2x.png"; sourceTree = "<group>"; };
 		07F0E85D1C89A8990007F445 /* CreatorINFOView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatorINFOView.h; sourceTree = "<group>"; };
 		07F0E85E1C89A8990007F445 /* CreatorINFOView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatorINFOView.m; sourceTree = "<group>"; };
 		07F0E8601C89BA5B0007F445 /* sina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sina.jpg; sourceTree = "<group>"; };
@@ -435,6 +461,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07EC54231C92AC6400D1AF89 /* libsqlite3.0.dylib in Frameworks */,
 				07CBC42A1C7DB07200F095E0 /* SystemConfiguration.framework in Frameworks */,
 				07CBC4281C7DB06600F095E0 /* MobileCoreServices.framework in Frameworks */,
 				07CBC4261C7DB05A00F095E0 /* Security.framework in Frameworks */,
@@ -597,6 +624,7 @@
 		075EE4191C7F2A1C0060808B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				07EC542A1C92E90100D1AF89 /* LaunchImage-700-568h@2x.png */,
 				075EE41A1C7F2A1C0060808B /* lunchScreen.png */,
 				07F0E8891C8D17BB0007F445 /* background.jpg */,
 				07F0E8741C8AB4740007F445 /* SignIn.png */,
@@ -731,6 +759,7 @@
 		07CBC3091C7D9B2700F095E0 = {
 			isa = PBXGroup;
 			children = (
+				07EC54221C92AC6400D1AF89 /* libsqlite3.0.dylib */,
 				07CBC4291C7DB07200F095E0 /* SystemConfiguration.framework */,
 				07CBC4271C7DB06600F095E0 /* MobileCoreServices.framework */,
 				07CBC4251C7DB05A00F095E0 /* Security.framework */,
@@ -802,6 +831,8 @@
 				07CBC3441C7D9C1200F095E0 /* AppDelegate.m */,
 				07CBC3451C7D9C1200F095E0 /* TabBarViewController.h */,
 				07CBC3461C7D9C1200F095E0 /* TabBarViewController.m */,
+				07EC54271C92E07C00D1AF89 /* GuideViewController.h */,
+				07EC54281C92E07C00D1AF89 /* GuideViewController.m */,
 				07CBC42C1C7DB1E800F095E0 /* PrefixHeader.pch */,
 			);
 			path = Main;
@@ -878,6 +909,8 @@
 			children = (
 				077489211C8FCA05006DF949 /* MONOTools.h */,
 				077489221C8FCA05006DF949 /* MONOTools.m */,
+				07EC541F1C92AC3F00D1AF89 /* SqliteFmdbTools.h */,
+				07EC54201C92AC3F00D1AF89 /* SqliteFmdbTools.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -900,6 +933,7 @@
 		07CBC3551C7DA00400F095E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07EC540E1C92ABFD00D1AF89 /* fmdb */,
 				07CBC4041C7DAE9300F095E0 /* AFNetworking */,
 				07CBC4181C7DAE9300F095E0 /* Log */,
 				07CBC3761C7DA78000F095E0 /* MJRefresh */,
@@ -1115,6 +1149,24 @@
 			path = Log;
 			sourceTree = "<group>";
 		};
+		07EC540E1C92ABFD00D1AF89 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				07EC540F1C92ABFD00D1AF89 /* FMDatabase.h */,
+				07EC54101C92ABFD00D1AF89 /* FMDatabase.m */,
+				07EC54111C92ABFD00D1AF89 /* FMDatabaseAdditions.h */,
+				07EC54121C92ABFD00D1AF89 /* FMDatabaseAdditions.m */,
+				07EC54131C92ABFD00D1AF89 /* FMDatabasePool.h */,
+				07EC54141C92ABFD00D1AF89 /* FMDatabasePool.m */,
+				07EC54151C92ABFD00D1AF89 /* FMDatabaseQueue.h */,
+				07EC54161C92ABFD00D1AF89 /* FMDatabaseQueue.m */,
+				07EC54171C92ABFD00D1AF89 /* FMDB.h */,
+				07EC54181C92ABFD00D1AF89 /* FMResultSet.h */,
+				07EC54191C92ABFD00D1AF89 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1222,6 +1274,7 @@
 				07F0E8631C89BA5B0007F445 /* weichat.jpg in Resources */,
 				07411D161C8E7CA4003DDB50 /* icon-wutu.png in Resources */,
 				07411D141C8E7C67003DDB50 /* icon-ziti.png in Resources */,
+				07EC542B1C92E90100D1AF89 /* LaunchImage-700-568h@2x.png in Resources */,
 				076A10971C819AFB00047A86 /* icon-zhinanzhen.png in Resources */,
 				076A10881C81519A00047A86 /* icon-o.png in Resources */,
 				076A10871C81519A00047A86 /* icon-o-selected.png in Resources */,
@@ -1267,6 +1320,7 @@
 				07CBC3481C7D9C1200F095E0 /* TabBarViewController.m in Sources */,
 				079CBB751C842153006D3D8E /* SpecialSearchView.m in Sources */,
 				07CBC3E71C7DA78000F095E0 /* SDWebImageCompat.m in Sources */,
+				07EC541E1C92ABFD00D1AF89 /* FMResultSet.m in Sources */,
 				07CBC3D71C7DA78000F095E0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				07CBC3ED1C7DA78000F095E0 /* UIButton+WebCache.m in Sources */,
 				07CBC3DD1C7DA78000F095E0 /* MJRefreshNormalHeader.m in Sources */,
@@ -1275,6 +1329,7 @@
 				07CBC3EB1C7DA78000F095E0 /* SDWebImageManager.m in Sources */,
 				076A10901C81525000047A86 /* SpecialViewController.m in Sources */,
 				07426C081C893C540078CCF0 /* MineViewController.m in Sources */,
+				07EC541D1C92ABFD00D1AF89 /* FMDatabaseQueue.m in Sources */,
 				07CBC3E21C7DA78000F095E0 /* UIScrollView+MJRefresh.m in Sources */,
 				07F0E8701C8A804D0007F445 /* RecTeaView.m in Sources */,
 				07CBC41E1C7DAE9300F095E0 /* AFNetworkReachabilityManager.m in Sources */,
@@ -1285,6 +1340,7 @@
 				07CBC3E81C7DA78000F095E0 /* SDWebImageDecoder.m in Sources */,
 				07CBC41B1C7DAE9300F095E0 /* AFHTTPRequestOperation.m in Sources */,
 				07CBC3F61C7DA79C00F095E0 /* RecViewController.m in Sources */,
+				07EC541C1C92ABFD00D1AF89 /* FMDatabasePool.m in Sources */,
 				07D482E61C89754300307664 /* CreatorDetailView.m in Sources */,
 				07CBC3581C7DA56A00F095E0 /* RecModel.m in Sources */,
 				07CBC35B1C7DA60100F095E0 /* NextModel.m in Sources */,
@@ -1305,6 +1361,7 @@
 				07CBC3F11C7DA78000F095E0 /* UIImageView+HighlightedWebCache.m in Sources */,
 				079CBB721C841BB2006D3D8E /* SpecialView.m in Sources */,
 				077B79911C87D7950048692B /* ContentSearchResultCell.m in Sources */,
+				07EC541A1C92ABFD00D1AF89 /* FMDatabase.m in Sources */,
 				07CBC3D21C7DA78000F095E0 /* MJRefreshBackFooter.m in Sources */,
 				07CBC3DB1C7DA78000F095E0 /* MJRefreshBackStateFooter.m in Sources */,
 				07CBC3DC1C7DA78000F095E0 /* MJRefreshGifHeader.m in Sources */,
@@ -1319,6 +1376,7 @@
 				07411CFE1C8D7197003DDB50 /* FavContentTableViewCell.m in Sources */,
 				07411CF81C8D68C3003DDB50 /* SpecialUpdateModel.m in Sources */,
 				0771ED351C7DDE1800C1FC38 /* RecView.m in Sources */,
+				07EC54291C92E07C00D1AF89 /* GuideViewController.m in Sources */,
 				07CBC3E01C7DA78000F095E0 /* MJRefreshConst.m in Sources */,
 				07F0E8731C8A82D40007F445 /* TeaModel.m in Sources */,
 				07426C111C89688D0078CCF0 /* CreatorDetailViewController.m in Sources */,
@@ -1340,12 +1398,14 @@
 				076A107D1C8049B800047A86 /* RecPicTableViewCell.m in Sources */,
 				07CBC3EE1C7DA78000F095E0 /* UIImage+GIF.m in Sources */,
 				079CBB7F1C847688006D3D8E /* BaseCollectionViewCell.m in Sources */,
+				07EC54211C92AC3F00D1AF89 /* SqliteFmdbTools.m in Sources */,
 				07CBC41D1C7DAE9300F095E0 /* AFHTTPSessionManager.m in Sources */,
 				07CBC3E31C7DA78000F095E0 /* UIView+MJExtension.m in Sources */,
 				07426BF41C8936B50078CCF0 /* SpecialDetailViewController.m in Sources */,
 				07CBC41F1C7DAE9300F095E0 /* AFSecurityPolicy.m in Sources */,
 				07CBC4221C7DAE9300F095E0 /* AFURLResponseSerialization.m in Sources */,
 				07F0E8851C8AFE270007F445 /* UserSignInModel.m in Sources */,
+				07EC541B1C92ABFD00D1AF89 /* FMDatabaseAdditions.m in Sources */,
 				075EE4181C7F19130060808B /* BaseViewController.m in Sources */,
 				07F0E87B1C8ABAFC0007F445 /* SignInMethodView.m in Sources */,
 				07CBC3E61C7DA78000F095E0 /* SDImageCache.m in Sources */,
@@ -1483,7 +1543,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				GCC_PREFIX_HEADER = "/Users/chile/Desktop/lanou/course/项目A/A/ProjectA/ProjectA/Main/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ProjectA/Main/PrefixHeader.pch";
 				INFOPLIST_FILE = ProjectA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-objc";
@@ -1495,7 +1555,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				GCC_PREFIX_HEADER = "/Users/chile/Desktop/lanou/course/项目A/A/ProjectA/ProjectA/Main/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ProjectA/Main/PrefixHeader.pch";
 				INFOPLIST_FILE = ProjectA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-objc";
