@@ -7,7 +7,10 @@
 //
 
 #import "SpecialSearchView.h"
+#import "BaseWebView.h"
+
 #import "SpecialSearchResultModel.h"
+
 #import "SpecialSearchResultCell.h"
 #import "ContentSearchResultCell.h"
 
@@ -65,6 +68,7 @@
 
 }
 
+#pragma mark - 创建tableview & 协议方法
 - (void)createTableView {
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - 50 - 49) style:UITableViewStyleGrouped];
     self.tableView.dataSource = self;
@@ -101,6 +105,15 @@
     };
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SpecialSearchResultModel *model = self.arraySearchResult.firstObject;
+    if (indexPath.section == 0) {
+        NSLog(@"%@", model.special[indexPath.row]);
+    } else {
+        self.showResultWebViewBlock([model.item[indexPath.row] item_url]);
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 50;
 }
@@ -129,6 +142,9 @@
         return cell;
     }
 }
+
+
+#pragma mark - selector
 
 - (void)clickBackButton:(UIButton *)sender {
     [UIView animateWithDuration:0.5 animations:^{

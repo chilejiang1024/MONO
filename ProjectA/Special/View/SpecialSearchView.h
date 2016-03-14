@@ -10,6 +10,9 @@
 
 @interface SpecialSearchView : BaseView
 
+typedef void(^ShowResultWebViewBlock)(NSString *);
+/** ShowResultWebViewBlock */
+@property (nonatomic, copy) ShowResultWebViewBlock showResultWebViewBlock;
 
 - (void)setArraySearchResult:(NSMutableArray *)arraySearchResult;
 

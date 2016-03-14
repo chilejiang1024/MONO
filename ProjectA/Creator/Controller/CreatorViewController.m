@@ -71,7 +71,7 @@
 - (void)createView {
     __block typeof(self) weakSelf = self;
     
-    self.creatorView = [[CreatorView alloc] initWithFrame:CGRectMake(0, 20, WIDTH, HEIGHT - 20 - 49)];
+    self.creatorView = [[CreatorView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - 49)];
     self.creatorView.goToDetailVC = ^(CpModel *model){
         CreatorDetailViewController *detailVC = [[CreatorDetailViewController alloc] init];
         [weakSelf presentViewController:detailVC animated:NO completion:^{

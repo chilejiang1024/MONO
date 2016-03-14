@@ -111,6 +111,10 @@
             frame.origin.x = 0;
             weakSelf.searchView.frame = frame;
         }];
+        weakSelf.searchView.showResultWebViewBlock = ^(NSString *url){
+            BaseWebView *webView = [[BaseWebView alloc] initWithFrame:weakSelf.view.frame URL:url];
+            [weakSelf.view addSubview:webView];
+        };
     };
     
     self.specialView.searchBlock = ^(NSString *searchText){
