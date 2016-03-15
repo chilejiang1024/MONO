@@ -128,7 +128,11 @@ static NSString *collectionReuseID = @"collectionReuseID";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    self.goToDetailVC(self.arrayCPModel[indexPath.row]);
+    if (indexPath.row != 3) {
+        self.goToDetailVC(self.arrayCPModel[indexPath.row]);
+    } else {
+        NSLog(@"This item is not available.");
+    }
 }
 
 

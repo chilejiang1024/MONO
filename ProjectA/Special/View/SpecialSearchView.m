@@ -32,9 +32,14 @@
 
 - (void)setArraySearchResult:(NSMutableArray *)arraySearchResult {
     _arraySearchResult = arraySearchResult;
-    self.label.hidden = YES;
-    self.tableView.hidden = NO;
-    [self.tableView reloadData];
+    SpecialSearchResultModel *model = self.arraySearchResult.firstObject;
+    if (model.special.count > 0 || model.item.count > 0) {
+        self.label.hidden = YES;
+        self.tableView.hidden = NO;
+        [self.tableView reloadData];
+    } else {
+        [self showNoResultView];
+    }
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -43,6 +48,8 @@
     }
     return self;
 }
+
+#pragma mark - create view
 
 - (void)createView {
     
@@ -159,6 +166,34 @@
     // clean data
     [self.arraySearchResult removeAllObjects];
 }
+
+#pragma mark - show no result alert view
+
+- (void)showNoResultView {
+    UIView *noResultView = [[UIView alloc] initWithFrame:CGRectMake(WIDTH / 2 - 120 / 0.618 / 2, 200, 120 / 0.618, 120)];
+    noResultView.backgroundColor = [UIColor blackColor];
+    noResultView.alpha = 0.1;
+    
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:noResultView.bounds];
+    messageLabel.text = @"未搜索到结果\nPlease change key word!";
+    messageLabel.numberOfLines = 2;
+    messageLabel.textAlignment = NSTextAlignmentCenter;
+    messageLabel.textColor = [UIColor whiteColor];
+    [noResultView addSubview:messageLabel];
+    
+    [self addSubview:noResultView];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        noResultView.alpha = 0.8;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            noResultView.alpha = 0;
+            [noResultView removeFromSuperview];
+        });
+    }];
+    
+    
+}
+
 
 
 @end

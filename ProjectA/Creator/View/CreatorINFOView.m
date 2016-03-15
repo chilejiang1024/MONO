@@ -121,7 +121,7 @@
     self.labelWeChat.font = [UIFont systemFontOfSize:14.f];
     [mainView addSubview:self.labelWeChat];
     
-    self.labelURL = [[UILabel alloc] initWithFrame:CGRectMake(60, 210, 100, 40)];
+    self.labelURL = [[UILabel alloc] initWithFrame:CGRectMake(60, 210, 200, 40)];
     self.labelURL.textColor = [UIColor colorWithRed:0.28 green:0.60 blue:0.87 alpha:1.0];
     self.labelURL.text = _model.web_site_url;
     self.labelURL.font = [UIFont systemFontOfSize:14.f];
@@ -132,6 +132,7 @@
     buttonSina.titleLabel.font = [UIFont systemFontOfSize:14.f];
     [buttonSina setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     [buttonSina setTitle:@"点击复制" forState:UIControlStateNormal];
+    [buttonSina addTarget:self action:@selector(buttonClickSelector:) forControlEvents:UIControlEventTouchUpInside];
     [mainView addSubview:buttonSina];
     
     UIButton *buttonWeChat = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -139,6 +140,7 @@
     buttonWeChat.titleLabel.font = [UIFont systemFontOfSize:14.f];
     [buttonWeChat setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     [buttonWeChat setTitle:@"点击复制" forState:UIControlStateNormal];
+    [buttonWeChat addTarget:self action:@selector(buttonClickSelector:) forControlEvents:UIControlEventTouchUpInside];
     [mainView addSubview:buttonWeChat];
     
     UIButton *buttonUrl = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -146,6 +148,7 @@
     buttonUrl.titleLabel.font = [UIFont systemFontOfSize:14.f];
     [buttonUrl setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     [buttonUrl setTitle:@"访问网站" forState:UIControlStateNormal];
+    [buttonUrl addTarget:self action:@selector(buttonClickSelector:) forControlEvents:UIControlEventTouchUpInside];
     [mainView addSubview:buttonUrl];
     
     UIButton *buttonBack = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -161,5 +164,19 @@
     self.disappearViewBlock();
 }
 
+- (void)buttonClickSelector:(UIButton *)sender {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    if (sender.frame.origin.y == 140) {
+        NSLog(@"%@", _model.weibo_name);
+        pasteboard.string = _model.weibo_name;
+    } else if (sender.frame.origin.y == 180) {
+        NSLog(@"%@", _model.wechat_uid);
+        pasteboard.string = _model.wechat_uid;
+    } else {
+        // 打开浏览器, 打开网址, 就这一句 ... 还以为多难 ... 通过URL来定位app
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_model.web_site_url]];
+
+    }
+}
 
 @end

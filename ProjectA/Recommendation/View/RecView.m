@@ -133,6 +133,7 @@
         imageView.alpha = 0.8;
         imageView.tag = 10000 + i;
         [imageView sd_setImageWithURL:[NSURL URLWithString:model.item.share_image]];
+        
         [self.tableHeader addSubview:imageView];
         
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.item.share_image]]];
@@ -141,6 +142,10 @@
     }
     // 设置初始值
     self.tableHeader.contentOffset = CGPointMake(WIDTH, 0);
+    
+    // add tap gesture recognizer to header view.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickScrollView:)];
+    [self.tableHeader addGestureRecognizer:tap];
     
     self.tableView.tableHeaderView = self.tableHeader;
     
@@ -255,7 +260,6 @@
     [view addSubview:label];
     
     UIImageView *imageHeader = [[UIImageView alloc] initWithFrame:CGRectMake(10, 50, WIDTH - 20, 400)];
-    imageHeader.backgroundColor = [UIColor yellowColor];
     WaterfallModel *model = [self.arrayRecModels[section] waterfall].firstObject;
     [imageHeader sd_setImageWithURL:[NSURL URLWithString:model.item.thumb.raw]];
     [view addSubview:imageHeader];
@@ -326,6 +330,11 @@
     self.goToTeaVCBlock();
 }
 
+- (void)clickScrollView:(UITapGestureRecognizer *)tap {
+    NSInteger page = [self.labelPageText.text substringToIndex:1].integerValue;
+    WaterfallModel *model = self.arrayImages[page - 1];
+    self.clickBlock(model.item.item_url);
+}
 
 #pragma mark - auto轮播图的实现
 // ---------------------------------------------

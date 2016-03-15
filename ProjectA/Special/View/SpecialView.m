@@ -78,6 +78,7 @@
     for (UIView *view in headerView.subviews) {
         [view removeFromSuperview];
     }
+    
     // warning : dont touch this line...
     headerView.backgroundColor = [UIColor blackColor];
     

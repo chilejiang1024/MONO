@@ -30,9 +30,9 @@
             
             // 长度
             attachmentBehavior.length = 0;
-            // 阻尼
+            // 阻尼 (影响回弹速度)
             attachmentBehavior.damping = 0.5;
-            // 频率
+            // 频率 (弹性硬度)
             attachmentBehavior.frequency = 0.8;
             
             [_animator addBehavior:attachmentBehavior];

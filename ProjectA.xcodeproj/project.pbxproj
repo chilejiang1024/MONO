@@ -1563,11 +1563,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lv Fang (FY52J57RAD)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ProjectA/Main/PrefixHeader.pch";
 				INFOPLIST_FILE = ProjectA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b91b86f8-dd30-417a-8a03-4ade4fdd9aac";
 			};
 			name = Debug;
 		};
@@ -1575,11 +1578,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lv Fang (FY52J57RAD)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ProjectA/Main/PrefixHeader.pch";
 				INFOPLIST_FILE = ProjectA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b91b86f8-dd30-417a-8a03-4ade4fdd9aac";
 			};
 			name = Release;
 		};
