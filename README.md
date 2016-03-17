@@ -13,3 +13,5 @@ V 0.4 add database for user log.
 V 0.5 Add spring dynamic animation flow layout.
 
 V 0.6 增加了在真机上调试的证书和描述文件.
+
+V 0.7 增加第三方分享的框架(未实现)
