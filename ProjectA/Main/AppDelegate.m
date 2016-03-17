@@ -22,7 +22,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"] isEqual:@YES]) {
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"] != nil) {
         [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:@"firstLaunch"];
         GuideViewController *guideVC = [[GuideViewController alloc] init];
         self.window.rootViewController = guideVC;

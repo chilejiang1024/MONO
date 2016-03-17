@@ -58,7 +58,7 @@
     self.specialDetailView = [[SpecialDetailView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
     [self.view addSubview:self.specialDetailView];
     
-    __block typeof(self)weakSelf = self;
+    __weak typeof(self)weakSelf = self;
     
     // dismiss VC
     self.specialDetailView.backBlock = ^(){
@@ -83,14 +83,21 @@
         
     };
     
+    // refresh content
+    self.specialDetailView.refreshBlock = ^(NSInteger flag){
+        
+    };
+    
 }
+
+#pragma mark - get data
 
 - (void)getData {
     NSString *url = [NSString stringWithFormat:URL_SPECIAL_DETAIL, self.model.Id];
     NSDictionary *dic = @{@"format" : @"json"};
     [self.manager GET:url parameters:dic success:^(AFHTTPRequestOperation *operation, id object) {
         NSDictionary *dic = object;
-        NSLog(@"%@", dic);
+        // NSLog(@"%@", dic);
         self.specialDetailModel = [SpecialDetailModel getSpecialDetailModelWithDic:dic];
         [self.specialDetailView setDetailModel:self.specialDetailModel];
         [self.specialDetailView setSpecialModel:self.model];

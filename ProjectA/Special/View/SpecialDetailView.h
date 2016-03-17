@@ -28,6 +28,9 @@ typedef void(^BackBlock)();
 /** BackBlock */
 @property (nonatomic, copy) BackBlock backBlock;
 
+typedef void(^RefreshBlock)(NSInteger);
+/** RefreshBlock */
+@property (nonatomic, copy) RefreshBlock refreshBlock;
 
 @property (nonatomic, retain) SpecialListModel *specialModel;
 

@@ -5,6 +5,8 @@
 
 target 'ProjectA' do
 
+pod 'UMengSocial', '~> 4.3'
+
 end
 
 target 'ProjectATests' do

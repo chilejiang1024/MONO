@@ -15,9 +15,12 @@
  */
 
 #import "SpecialDetailView.h"
-#import "UIImageView+WebCache.h"
+
 #import "RecTextTableViewCell.h"
 #import "SpecialDetailTableViewCell.h"
+
+#import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
 
 @interface SpecialDetailView () <UITableViewDataSource, UITableViewDelegate>
 
@@ -124,6 +127,9 @@ typedef enum : NSUInteger {
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) style:UITableViewStyleGrouped];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        self.refreshBlock(ShowContent);
+    }];
     [self.tableView registerClass:[RecTextTableViewCell class] forCellReuseIdentifier:@"tableViewCell"];
     [self.tableView registerClass:[SpecialDetailTableViewCell class] forCellReuseIdentifier:@"tableViewCell_1"];
     [self addSubview:self.tableView];

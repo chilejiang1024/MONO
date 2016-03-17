@@ -8,9 +8,12 @@
 
 #import "CreatorViewController.h"
 #import "CreatorDetailViewController.h"
-#import "AFNetworking.h"
+
 #import "CreatorView.h"
+
 #import "WaterfallModel.h"
+
+#import "AFNetworking.h"
 
 @interface CreatorViewController ()
 
@@ -61,15 +64,14 @@
         }
         [self.creatorView setArrayCPModel:self.arrayCPModel];
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
-        
+        // code
     }];
-    
 }
 
 #pragma mark - 创建视图
 
 - (void)createView {
-    __block typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     self.creatorView = [[CreatorView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - 49)];
     self.creatorView.goToDetailVC = ^(CpModel *model){

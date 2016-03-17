@@ -32,8 +32,9 @@
     guideScrollView.contentSize = CGSizeMake(WIDTH * 3, HEIGHT);
     for (int i = 0; i < 3; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH * i, 0, WIDTH, HEIGHT)];
-        imageView.image = [UIImage imageNamed:@"LaunchImage-700-568h@2x.png"];
+        imageView.image = [UIImage imageNamed:@"LaunchImage.png"];
         [guideScrollView addSubview:imageView];
+        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(38 + WIDTH * i, HEIGHT - 70, 150, 50);
         [button addTarget:self action:@selector(skipGuideView:) forControlEvents:UIControlEventTouchUpInside];

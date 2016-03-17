@@ -70,15 +70,16 @@
 
 - (void)createView {
     
-    __block typeof(self) weakSelf = self;
+    // 在这里使用__weak修饰 dont use __block
+    __weak typeof(self) weakSelf = self;
     
     SignInView *signInView = [[SignInView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - 49)];
-    __block typeof(SignInView *) weakSignInView = signInView;
+    __weak typeof(SignInView *) weakSignInView = signInView;
     
     signInView.signInBlock = ^(){
 
         SignInMethodView *signInMethodView = [[SignInMethodView alloc] initWithFrame:self.view.frame];
-        __block typeof(SignInMethodView *) weakSignInMethodView = signInMethodView;
+        __weak typeof(SignInMethodView *) weakSignInMethodView = signInMethodView;
         
         signInMethodView.backBlock = ^(){
             [UIView animateWithDuration:0.3 animations:^{
@@ -117,7 +118,7 @@
                 self.userView.goToUserSettingViewBlock = ^(){
                     UserSettingView *settingView = [[UserSettingView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
                     settingView.alpha = 0;
-                    __block typeof(UserSettingView *)weakSettingView = settingView;
+                    __weak typeof(UserSettingView *)weakSettingView = settingView;
                     
                     settingView.backBlock = ^(){
                         [UIView animateWithDuration:0.3 animations:^{
@@ -128,6 +129,13 @@
                         });
                     };
                     
+                    settingView.cleanSDWebIamgeCachesBlock = ^(){
+                        NSString *message = [NSString stringWithFormat:@"Clear Caches %.2fMB", [SDWebImageManager.sharedManager.imageCache getSize] / 1024 / 1024.0];
+                        [weakSelf showMessageLabelWithMessage:message OnView:weakSettingView];
+                        NSLog(@"%ld Bytes.", [SDWebImageManager.sharedManager.imageCache getSize]);
+                        [SDWebImageManager.sharedManager.imageCache clearMemory];
+                        [SDWebImageManager.sharedManager.imageCache clearDisk];
+                    };
                     
                     // 注销登录状态, 移除mine页所有页面, 重新生成.
                     settingView.signOutBlock = ^(){
@@ -200,7 +208,7 @@
         self.userView.goToUserSettingViewBlock = ^(){
             UserSettingView *settingView = [[UserSettingView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
             settingView.alpha = 0;
-            __block typeof(UserSettingView *)weakSettingView = settingView;
+            __weak typeof(UserSettingView *)weakSettingView = settingView;
             
             settingView.backBlock = ^(){
                 [UIView animateWithDuration:0.3 animations:^{

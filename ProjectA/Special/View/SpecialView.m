@@ -22,6 +22,8 @@
 
 @implementation SpecialView
 
+#pragma mark - setter & init
+
 - (void)setSpecialModel:(SpecialModel *)specialModel {
     if (_specialModel != specialModel) {
         _specialModel = specialModel;
@@ -36,6 +38,8 @@
     }
     return self;
 }
+
+#pragma mark - create view & searchBar & collection view
 
 - (void)createView {
     [self createSearchBar];
@@ -54,7 +58,7 @@
     layout.itemSize = CGSizeMake(WIDTH / 2, WIDTH / 2);
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 70, WIDTH, HEIGHT - 70) collectionViewLayout:layout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 70, WIDTH, HEIGHT - 70 - 49) collectionViewLayout:layout];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"collection_header"];
@@ -62,6 +66,7 @@
     [self addSubview:self.collectionView];
 }
 
+#pragma mark - collection view 协议方法
 // -------------------------------------------
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
@@ -148,7 +153,7 @@
         label3.font = [UIFont systemFontOfSize:13.f];
         [headerView addSubview:label3];
         
-        UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(200, 20, 155, 30)];
+        UILabel *label4 = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH - 175, 20, 155, 30)];
         label4.text = [NSString stringWithFormat:@"查看全部%ld个专题 >", [self.specialModel.category_list[indexPath.section - 1] special_num]];
         label4.textAlignment = NSTextAlignmentRight;
         label4.font = [UIFont systemFontOfSize:13.f];
@@ -187,6 +192,7 @@
     self.goToDetailViewBlock(model);
 }
 
+#pragma mark - search bar 协议方法
 // -------------------------------------------
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     self.showSearchViewBlock();
@@ -201,6 +207,7 @@
     self.searchBlock(searchBar.text);
 }
 
+#pragma mark - collection view header view 点击方法
 // -------------------------------------------
 - (void)tapHeaderView:(UITapGestureRecognizer *)sender {
     NSInteger section = (sender.view.frame.origin.y - 200) / (70 + WIDTH);

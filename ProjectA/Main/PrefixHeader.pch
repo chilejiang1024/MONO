@@ -69,7 +69,7 @@
 #define URL_CHECK_SPECIAL_UPDATE @"http://mmmono.com/api/v2/special/check_special_update/"
 #define URL_FAVLIST @"http://mmmono.com/api/v2/people/%@/favlist/"
 #define URL_FAV @"http://mmmono.com/api/v2/item/%@fav/"
-
+#define URL_COMMENT @"http://mmmono.com/api/v2/item/%@comment/normal_list/?page=1"
 
 
 

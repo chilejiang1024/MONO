@@ -46,7 +46,7 @@
 
 - (void)createView {
     self.teaView = [[RecTeaView alloc] initWithFrame:self.view.frame];
-    __block typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     self.teaView.dismissVCBlock = ^(){
         [weakSelf dismissViewControllerAnimated:NO completion:nil];
     };

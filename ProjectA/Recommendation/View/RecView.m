@@ -50,12 +50,12 @@
 
 - (UILabel *)labelPage {
     if (!_labelPage) {
-        _labelPage = [[UILabel alloc] initWithFrame:CGRectMake(300, 250, 30, 30)];
+        _labelPage = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH - 75, 250, 30, 30)];
         _labelPage.backgroundColor = MONO_COLOR;
         _labelPage.layer.cornerRadius = 5;
         _labelPage.clipsToBounds = YES;
         _labelPage.transform = CGAffineTransformMakeRotation(M_PI_4);
-        _labelPageText = [[UILabel alloc] initWithFrame:CGRectMake(300, 250, 30, 30)];
+        _labelPageText = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH - 75, 250, 30, 30)];
         _labelPageText.textAlignment = NSTextAlignmentCenter;
         _labelPageText.text = @"1/3";
     }
@@ -92,6 +92,10 @@
         _arrayImage = [NSMutableArray array];
     }
     return _arrayImage;
+}
+
+- (void)dealloc {
+    self.timer = nil;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame Images:(NSMutableArray *)images Waterfalls:(NSMutableArray *)waterfalls{

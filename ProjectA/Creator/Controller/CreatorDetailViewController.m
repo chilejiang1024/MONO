@@ -62,7 +62,7 @@
 }
 
 - (void)createView {
-    __block typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     self.detailView = [[CreatorDetailView alloc] initWithFrame:self.view.frame];
     
     self.detailView.backBlock = ^(){
@@ -80,7 +80,7 @@
     self.detailView.popINFOVIewBlock = ^(CpModel *model){
         CreatorINFOView *infoView = [[CreatorINFOView alloc] initWithFrame:weakSelf.view.frame CpModel:model];
         
-        __block typeof(CreatorINFOView *)weakInfoView = infoView;
+        __weak typeof(CreatorINFOView *)weakInfoView = infoView;
         infoView.disappearViewBlock = ^(){
             [UIView animateWithDuration:0.3 animations:^{
                 weakInfoView.alpha = 0;
@@ -112,8 +112,6 @@
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         
     }];
-    
-    
 }
 
 @end

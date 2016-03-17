@@ -154,7 +154,9 @@
 #pragma mark - get comment
 
 - (void)getCommentArray {
-    [self.manager GET:@"http://mmmono.com/api/v2/item/282369/comment/normal_list/?page=1" parameters:nil success:^(AFHTTPRequestOperation *operation, id object) {
+    NSString *itemId = [self.url substringFromIndex:@"http://mmmono.com/item/".length];
+    NSString *url = [NSString stringWithFormat:URL_COMMENT, itemId];
+    [self.manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id object) {
         NSDictionary *dic = object;
         self.arrayComment = [CommentModel getCommentModelArrayWithArray:dic[@"comment_list"]];
         [self.tableView reloadData];
